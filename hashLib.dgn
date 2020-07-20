@@ -1,0 +1,109 @@
+include "langPy.dgn"
+func encrypt(data, hashType){
+    hashes=["md5","sha1","sha224","sha256","sha384","sha512"]
+    h=hashType
+    if(hashType == hashes[0] | h==hashes[1] | h==hashes[2] | h==hashes[3] | h==hashes[4] | h==hashes[5]){
+        code="
+import hashlib
+#IMPORT HASHLIB SO YOU CAN ENCRYPT IN HASHLIB FORMATS.
+data=u'''"+data+"'''
+h=hashlib.new('"+hashType+"')
+try:
+    h.update(data.encode('utf-8'))
+except:
+    print('ERROR:HASH COULD NOT BE COMPUTED:UNKNOWN HASH TYPE')
+else:
+    print([h.digest(),h.hexdigest()])
+"
+        t=trim(string(python(code)))
+        t=replace(t,"'","")
+        k=replace(t,"[","")
+        code=string(replace(k,"]",""))
+        return split(code,",")
+}
+    else{
+        showln "ERROR: HASH CANNOT BE COMPUTED : HASH NON EXISTENT."
+}
+}
+func aesEncrypt(mess,key){
+    key=string(key)
+    code="
+#IMPORT THE AES PYTHON CODE,THANKS TO BOZ HU (GITHUB).
+import aes
+key='"+key+"'
+message='"+string(mess)+"'
+aes=AES(key)
+print(aes.encrypt(message))"
+    enc=python(code)
+    return enc
+}
+func aesDecrypt(mess,key){
+    key=string(key)
+    cipherText=string(mess)
+    code="
+#IMPORT THE AES MODULE
+import aes
+key='"+key+"'
+aes=AES(key)
+cipherText='"+cipherText+"'
+print(aes.decrypt(cipherText())
+"
+pl=python(code)
+return pl
+}
+
+//TEST
+d=aesEncrypt("DIPO","5"*1000000)
+f=aesDecrypt(d,"5"*1000000)
+showln f
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

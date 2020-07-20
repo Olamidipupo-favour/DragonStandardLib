@@ -1,0 +1,5 @@
+*.jar 
+*.dgm
+CppDroid/
+*.py
+*.rst

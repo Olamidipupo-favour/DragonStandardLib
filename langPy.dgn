@@ -1,0 +1,23 @@
+//MADE BY AGBOOLA OLAMIDIPUPO.
+select "std"
+select "robot"
+select "types"
+select "files"
+func python(code){
+//create hidden files.
+    code=string(code)
+    ti=string(time())
+    f=fopen(ti+".py","w")
+    writeText(f,code)
+    flush(f)
+    fclose(f)
+    cmd="python3 " + ti + ".py > " + ti + ".result"
+    shell_exec(cmd)
+    re4s=fopen(ti+".result","r")
+    refr=trim(readText(re4s))
+    fclose(re4s)
+    delete(ti+".py")
+    delete(ti+".result")
+    return refr
+}
+//NOW YOU CAN USE PYTHON IN DRAGON.
