@@ -25,61 +25,6 @@ else:
         showln "ERROR: HASH CANNOT BE COMPUTED : HASH NON EXISTENT."
 }
 }
-func aesEncrypt(mess,key){
-    key=string(key)
-    code="
-#IMPORT THE AES PYTHON CODE,THANKS TO BOZ HU (GITHUB).
-import aes
-key='"+key+"'
-message='"+string(mess)+"'
-aes=AES(key)
-print(aes.encrypt(message))"
-    enc=python(code)
-    return enc
-}
-func aesDecrypt(mess,key){
-    key=string(key)
-    cipherText=string(mess)
-    code="
-#IMPORT THE AES MODULE
-import aes
-key='"+key+"'
-aes=AES(key)
-cipherText='"+cipherText+"'
-print(aes.decrypt(cipherText())
-"
-pl=python(code)
-return pl
-}
-
-//TEST
-d=aesEncrypt("DIPO","5"*1000000)
-f=aesDecrypt(d,"5"*1000000)
-showln f
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
